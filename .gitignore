@@ -1,0 +1,4 @@
+.idea
+text_analysis_api/__pycache__
+text_analysis_api/*/__pycache__
+tt/*
