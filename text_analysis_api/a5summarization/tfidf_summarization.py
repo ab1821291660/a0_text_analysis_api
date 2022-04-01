@@ -2,7 +2,7 @@
 
 
 import jieba.analyse
-from text_analysis_api.summarization import STOPWORDS
+from text_analysis_api.a5summarization import STOPWORDS
 
 
 def load_stopwords(stopwords_path):

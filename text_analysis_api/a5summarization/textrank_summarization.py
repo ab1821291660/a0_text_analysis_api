@@ -4,7 +4,7 @@
 import jieba
 import numpy as np
 from nltk.cluster.util import cosine_distance
-from text_analysis_api.summarization import STOPWORDS as STOPWORDS_PATH
+from text_analysis_api.a5summarization import STOPWORDS as STOPWORDS_PATH
 
 MIN_SEQ_LEN = 0
 

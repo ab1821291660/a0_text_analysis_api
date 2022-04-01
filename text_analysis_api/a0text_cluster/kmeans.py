@@ -3,17 +3,15 @@
 import jieba
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
-from sklearn.cluster import DBSCAN
-from sklearn.decomposition import PCA
-import matplotlib.pyplot as plt
-from text_analysis_api.text_cluster import STOPWORDS
+from sklearn.cluster import KMeans
+from text_analysis_api.a0text_cluster import STOPWORDS
 
-class DbscanClustering:
-    def __init__(self):
-        self.stopwords = self.load_stopwords(STOPWORDS)
+
+class KmeansClustering():
+    def __init__(self, stopwords_path=STOPWORDS):
+        self.stopwords = self.load_stopwords(stopwords_path)
         self.vectorizer = CountVectorizer()
         self.transformer = TfidfTransformer()
-
     def load_stopwords(self, stopwords=None):
         """
         加载停用词
@@ -25,6 +23,7 @@ class DbscanClustering:
                 return [line.strip() for line in f]
         else:
             return []
+
 
     def preprocess_data(self, corpus_path):
         """
@@ -53,37 +52,21 @@ class DbscanClustering:
         weights = tfidf.toarray()
         return weights
 
-    def pca(self, weights, n_components=2):
+    def kmeans(self, corpus_path, n_clusters=5):
         """
-        PCA对数据进行降维
-        :param weights:
-        :param n_components:
-        :return:
-        """
-        pca = PCA(n_components=n_components)
-        return pca.fit_transform(weights)
-
-    def dbscan(self, corpus_path, eps=0.1, min_samples=3, fig=False):
-        """
-        DBSCAN：基于密度的文本聚类算法
-        :param corpus_path: 语料路径，每行一个文本
-        :param eps: DBSCA中半径参数
-        :param min_samples: DBSCAN中半径eps内最小样本数目
-        :param fig: 是否对降维后的样本进行画图显示
-        :return:
+        KMeans文本聚类
+        :param corpus_path: 语料路径（每行一篇）,文章id从0开始
+        :param n_clusters: ：聚类类别数目
+        :return: {cluster_id1:[text_id1, text_id2]}
         """
         corpus = self.preprocess_data(corpus_path)
         weights = self.get_text_tfidf_matrix(corpus)
 
-        pca_weights = self.pca(weights)
+        clf = KMeans(n_clusters=n_clusters)
 
-        clf = DBSCAN(eps=eps, min_samples=min_samples)
+        # clf.fit(weights)
 
-        y = clf.fit_predict(pca_weights)
-
-        if fig:
-            plt.scatter(pca_weights[:, 0], pca_weights[:, 1], c=y)
-            plt.show()
+        y = clf.fit_predict(weights)
 
         # 中心点
         # centers = clf.cluster_centers_
@@ -103,6 +86,6 @@ class DbscanClustering:
 
 
 if __name__ == '__main__':
-    dbscan = DbscanClustering(stopwords_path='../data/stop_words.txt')
-    result = dbscan.dbscan('../data/test_data.txt', eps=0.05, min_samples=3)
+    Kmeans = KmeansClustering(stopwords_path='../data/stop_words.txt')
+    result = Kmeans.kmeans('../data/test_data.txt', n_clusters=5)
     print(result)
