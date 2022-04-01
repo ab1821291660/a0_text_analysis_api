@@ -34,7 +34,6 @@ class Fasttext:
         self.label = label
         self.lr = lr
         self.dim = dim
-
         if self.type == "predict":
             if not os.path.exists(self.save_model_path):
                 print("MODEL: {} is not EXIST ....")
@@ -43,13 +42,14 @@ class Fasttext:
             self.classifier = ff.load_model(self.save_model_path)
         else:
             self.classifier = None
-
+    ####===================================================================================================================================
     def train(self):
         classifier = ff.train_supervised(input=self.train_data_path, label="__label__", epoch=self.epoch,
                                          pretrainedVectors=self.pretrainedVectors, lr=self.lr, dim=self.dim)
         classifier.save_model(self.save_model_path)
-        train_result = classifier.test(self.train_data_path)
 
+
+        train_result = classifier.test(self.train_data_path)
         print("### TRAIN RESULT ###")
         print("Train Samples: {}".format(train_result[0]))
         print("Train Precision: {}".format(train_result[1]))
@@ -57,18 +57,16 @@ class Fasttext:
 
         if self.test_data_path:
             test_result = classifier.test(self.test_data_path)
-
             print("### TEST RESULT ###")
             print("Test Samples: {}".format(test_result[0]))
             print("Test Precision: {}".format(test_result[1]))
             print("Test Recall: {}\n\n".format(test_result[2]))
-
         print("model save to {}".format(self.save_model_path))
+
 
     def predict(self, list_str):
         result = self.classifier.predict(list_str, k=self.k, threshold=self.threshold)
-        return {"label": result[0], "probability": result[1].tolist()}
-
+        return {"label": result[0], "probability": result[1]}
 
 
 
