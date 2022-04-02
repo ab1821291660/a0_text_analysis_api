@@ -301,17 +301,18 @@ def topic_keywords(n_components=5, n_top_words=10, max_iter=10):
 word2vec_synonym: 采用预训练词向量，生成同义词、近义词
 synonym_dict: 根据词典返回同义词(收集词数较少...)
 """
-
 def word2vec_synonym():
     """
-    word_embedding_path: 预训练词向量路径，由于词向量太大，需用户自己下载
-                        下载参考：https://github.com/Embedding/Chinese-Word-Vectors
+    word_embedding_path: 预训练词向量路径，由于词向量太大，需用户自己下载--下载参考：https://github.com/Embedding/Chinese-Word-Vectors
     topn: 返回同义词个数
     :return: 同义词列表 [(word, score)],若查询词在词向量词表中不存在，返回[].
     """
     # 加载词向量
-    word2vec = Word2VecSynonym(word_embedding_path="./test_data/sgns.target.word-word.dynwin5.thr10.neg5.dim300.iter5",
-                               topn=5)
+    path = "./pre_model/sgns.target.word-word.dynwin5.thr10.neg5.dim300.iter5"
+    # path = "./pre_model/sgns.target.word-word.dynwin5.thr10.neg5.dim300.iter5"##"./test_data/sgns.target.word-word.dynwin5.thr10.neg5.dim300.iter5"
+    topn = 5
+    word2vec = Word2VecSynonym(word_embedding_path=path,
+                               topn=topn)
     # 生成同义词
     ret = word2vec.synonym("苹果")
     print(ret)
@@ -385,10 +386,13 @@ if __name__ == "__main__":
                     # 'topic_3': ['新浪', '佳能', '体育', '点击', '进入', '首发', '200', 'nba', 'us', 'ix'],
                     # 'topic_4': ['基金', '银行', '谢亚龙', '资金', '中国', '营业税', '12月', '足球', '亿元', '增加']}
 
-    word2vec_synonym()##===================================#loading word embedding ......
-    synonym_dict()#['狗傍人势', '仗势欺人', '恃势凌人', '虎求百兽', '谄上骄下', '驴蒙虎皮', '狐假虎威']    #['彬彬济济', '人才辈出', '济济彬彬']
 
-
+    synonym_dict()#['狗傍人势', '仗势欺人', '恃势凌人', '虎求百兽', '谄上骄下', '驴蒙虎皮', '
+    # word2vec_synonym()##===================================#ok但加载1.69G的词向量要3分钟呀
+                    #loading word embedding ......
+                    # DONE !!!
+                    # [('西瓜', 0.6353725790977478), ('核桃', 0.6292369365692139), ('红富士', 0.6206064224243164), ('水果', 0.6168665289878845), ('草莓', 0.6168125867843628)]
+                    # [('上海浦东', 0.6638803482055664), ('天津', 0.6481822729110718), ('上海市', 0.6477892994880676), ('杭州', 0.644584059715271), ('苏州', 0.6302792429924011)]
 
 
 
