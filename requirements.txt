@@ -25,7 +25,7 @@ pip install gensim==3.8.1 -i  http://pypi.douban.com/simple --trusted-host=pypi.
 #最终方案##===================================
 #最终方案##===================================activate py37pytorch1.7rasa__transformers41302
 pip list为1.8.5,,,,,但是pycharm为numpy==1.16.4并不为numpy==1.17.0    numpy-base==1.18.5----
-D:\anaconda3\envs\py37pytorch1.7rasa__transformers41302\Lib\site-packages----删掉低版本的numpy-1.16.4.dist-info并留下numpy-1.17.0.dist-info就ok
+D:\anaconda3\envs\py37pytorch1.7rasa__transformers41302\Lib\site-packages----删掉低版本的numpy-1.16.4.dist-info并留下numpy-1.17.0.dist-info就ok##===================================
 ImportError: numpy>=1.17 is required for a normal functioning of this module, but found numpy==1.16.4.
 Try: pip install transformers -U or pip install -e '.[dev]' if you're working with git master
 #
@@ -37,7 +37,7 @@ Try: pip install transformers -U or pip install -e '.[dev]' if you're working wi
 #
 C:\Users\tianxia>pip list | findstr numpy==== 1.19.2    1.17.0   1.18.5    1.19.2
 WARNING: No metadata found in d:\anaconda3\envs\py37pytorch1.7rasa__transformers41302\lib\site-packages
-numpy  1.18.5这是因为仅仅存在numpy-1.17.0.dist-info，，，，但不存在numpy-1.18.5-py3.7.egg-info，，，，
+numpy  1.18.5这是因为仅仅存在numpy-1.17.0.dist-info，，，，但不存在numpy-1.18.5-py3.7.egg-info，，，，##===================================
 conda install numpy==1.17.0   1.18.5
 conda install scipy==1.6.2
 #最终方案##===================================
