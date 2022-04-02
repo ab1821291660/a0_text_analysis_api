@@ -11,7 +11,7 @@ from text_analysis_api.a1text_similarity.cosion import CosionSimilarity
 from text_analysis_api.a1text_similarity.edit import EditSimilarity
 from text_analysis_api.a1text_similarity.simhash import SimHashSimilarity
 #
-# from text_analysis_api.triple_extraction.triple_extraction_ltp import TripleExtraction
+from text_analysis_api.a2triple_extraction.triple_extraction_ltp import TripleExtraction
 #
 #caption
 #
