@@ -2,3 +2,4 @@
 text_analysis_api/__pycache__
 text_analysis_api/*/__pycache__
 tt/*
+pre_model/sgns.target.word-word.dynwin5.thr10.neg5.dim300.iter5
