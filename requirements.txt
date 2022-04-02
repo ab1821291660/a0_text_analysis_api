@@ -8,47 +8,49 @@ ltp==4.1.5.post2  #base==ltp 4.1.5.post2#Successfully installed huggingface-hub-
                   #ERROR: huggingface-hub 0.4.0 has requirement packaging>=20.9, but you'll have packaging 20.4 which is incompatible.
 
                   pip install transformers -U
-ImportError: numpy>=1.17 is required for a normal functioning of this module, but found numpy==1.16.4.
-Try: pip install transformers -U or pip install -e '.[dev]' if you're working with git master
 
 nltk
 gensim==4.1.0  #base==3.8.1
 Pillow==9.0.0
 scikit_learn==0.24.2
 fasttext==0.9.1 -i  http://pypi.douban.com/simple --trusted-host=pypi.douban.com
-
-
 ##===================================
 pip install fasttext==0.9.1 -i  http://pypi.douban.com/simple --trusted-host=pypi.douban.com
 pip install ltp==4.1.5.post2 -i  http://pypi.douban.com/simple --trusted-host=pypi.douban.com
 pip install xpinyin==0.7.6 -i  http://pypi.douban.com/simple --trusted-host=pypi.douban.com
 pip install wordcloud==1.8.1 -i  http://pypi.douban.com/simple --trusted-host=pypi.douban.com
 pip install gensim==3.8.1 -i  http://pypi.douban.com/simple --trusted-host=pypi.douban.com
-#
-pip install tqdm==4.50.0 -i  http://pypi.douban.com/simple --trusted-host=pypi.douban.com
-pip list | findstr numpy      numpy                   1.18.5
-conda install transformers==4.7.0##ok
-conda install transformers==4.7.0 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda
-conda uninstall numpy
-conda install numpy==1.18.5
-#
-#
+#最终方案##===================================
+#最终方案##===================================
+#最终方案##===================================
+#最终方案##===================================activate py37pytorch1.7rasa__transformers41302
+pip list为1.8.5,,,,,但是pycharm为numpy==1.16.4并不为numpy==1.17.0    numpy-base==1.18.5----
+D:\anaconda3\envs\py37pytorch1.7rasa__transformers41302\Lib\site-packages----删掉低版本的numpy-1.16.4.dist-info并留下numpy-1.17.0.dist-info就ok
 ImportError: numpy>=1.17 is required for a normal functioning of this module, but found numpy==1.16.4.
 Try: pip install transformers -U or pip install -e '.[dev]' if you're working with git master
-
-(py37pytorch1.7rasa__transformers41302) C:\Users\tianxia>pip list | findstr numpy
+#
+最后为pip list==1.8.5   transformers==4.6.0
+最后为pycharm为numpy==1.17.0    numpy-base==1.18.5    scipy==1.6.2    transformers==4.6.0  pytorch-lighting==1.2.2，，，，scikit-learn==0.24.2
+#
+#
+#
+#
+C:\Users\tianxia>pip list | findstr numpy==== 1.19.2    1.17.0   1.18.5    1.19.2
 WARNING: No metadata found in d:\anaconda3\envs\py37pytorch1.7rasa__transformers41302\lib\site-packages
-numpy                   1.18.5
-
-
-activate py37pytorch1.7rasa__transformers41302
-pip uninstall numpy
-conda install numpy==1.16.4     1.19.2    1.17.0   1.18.5    1.19.2
+numpy  1.18.5这是因为仅仅存在numpy-1.17.0.dist-info，，，，但不存在numpy-1.18.5-py3.7.egg-info，，，，
+conda install numpy==1.17.0   1.18.5
 conda install scipy==1.6.2
-scipy                              1.6.2
+#最终方案##===================================
+#最终方案##===================================
+#最终方案##===================================
+#最终方案##===================================
 
 
-pip install pytorch_lightning  -i  http://pypi.douban.com/simple --trusted-host=pypi.douban.com
+
+
+
+
+
 
 
 
